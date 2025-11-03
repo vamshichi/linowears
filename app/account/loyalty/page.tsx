@@ -12,13 +12,13 @@ export default async function LoyaltyPage() {
   }
 
   const userData = await prisma.user.findUnique({
-    where: { id: session.userId },
+    where: { id: session.id },
   })
 
-  const { points, totalPoints } = await getLoyaltyPoints(session.userId)
+  const { points, totalPoints } = await getLoyaltyPoints(session.id)
 
   const referrals = await prisma.referral.findMany({
-    where: { referrerId: session.userId },
+    where: { referrerId: session.id },
     orderBy: { createdAt: "desc" },
   })
 

@@ -24,9 +24,20 @@ export const authOptions: NextAuthOptions = {
     error: "/auth/error",
   },
   callbacks: {
-    async session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id
+    async jwt({ token, user, account }) {
+      // Initial sign in
+      if (user) {
+        token.id = user.id
+        token.email = user.email
+        token.name = user.name
+        token.picture = user.image
+      }
+      return token
+    },
+    async session({ session, token }) {
+      // Add user id to session from token
+      if (session.user && token) {
+        session.user.id = token.id as string
       }
       return session
     },

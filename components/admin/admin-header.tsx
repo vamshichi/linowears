@@ -10,6 +10,8 @@ import {
   FolderTree,
   Grid3x3,
   Tag,
+  Warehouse,
+  Mail,
 } from "lucide-react"
 
 export function AdminHeader() {
@@ -65,6 +67,13 @@ export function AdminHeader() {
             Coupons
           </Link>
           <Link
+            href="/admin/inventory"
+            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
+          >
+            <Warehouse className="h-4 w-4" />
+            Inventory
+          </Link>
+          <Link
             href="/admin/content"
             className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
           >
@@ -77,6 +86,13 @@ export function AdminHeader() {
           >
             <Users className="h-4 w-4" />
             Customers
+          </Link>
+          <Link
+            href="/admin/newsletter"
+            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
+          >
+            <Mail className="h-4 w-4" />
+            Newsletter
           </Link>
         </nav>
 
