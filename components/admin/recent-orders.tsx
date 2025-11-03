@@ -32,7 +32,9 @@ export function RecentOrders({ orders }: { orders: any[] }) {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <p className="font-semibold">#{order.orderNumber}</p>
-                  <Badge variant={statusVariant[order.status as keyof typeof statusVariant]}>{order.status}</Badge>
+                  <Badge variant={statusVariant[order.status as keyof typeof statusVariant]}>
+                    {order.status}
+                  </Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">{order.user.email}</p>
                 <p className="text-xs text-muted-foreground">
@@ -46,7 +48,7 @@ export function RecentOrders({ orders }: { orders: any[] }) {
               <div className="text-right">
                 <p className="font-bold">₹{order.totalAmount.toLocaleString()}</p>
                 <Button variant="ghost" size="sm" asChild className="mt-2">
-                  <Link href={`/admin/orders/${order.id}`}>View</Link>
+                 <Link href={`/admin/orders/${order.id}`}>View</Link>
                 </Button>
               </div>
             </div>

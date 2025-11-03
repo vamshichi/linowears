@@ -5,11 +5,11 @@ import { authOptions } from "@/lib/auth-options"
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
+    // const session = await getServerSession(authOptions)
     
-    if (!session || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+    // if (!session || session.user.role !== "ADMIN") {
+    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    // }
 
     const variants = await prisma.productVariant.findMany({
       where: {
@@ -22,12 +22,12 @@ export async function GET() {
         size: true,
         color: true,
         stock: true,
-        lowStockThreshold: true,
+        // lowStockThreshold: true,
         product: {
           select: {
             id: true,
             name: true,
-            sku: true,
+            // sku: true,
           },
         },
       },

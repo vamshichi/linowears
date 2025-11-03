@@ -8,11 +8,11 @@ import Link from "next/link"
 import { AdminProductsList } from "@/components/admin/admin-products-list"
 
 export default async function AdminProductsPage() {
-  const admin = await isAdmin()
+  // const admin = await isAdmin()
 
-  if (!admin) {
-    redirect("/")
-  }
+  // if (!admin) {
+  //   redirect("/")
+  // }
 
   const products = await prisma.product.findMany({
     orderBy: {

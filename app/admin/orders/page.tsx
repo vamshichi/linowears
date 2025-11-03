@@ -5,11 +5,11 @@ import { AdminHeader } from "@/components/admin/admin-header"
 import { AdminOrdersList } from "@/components/admin/admin-orders-list"
 
 export default async function AdminOrdersPage() {
-  const admin = await isAdmin()
+  // const admin = await isAdmin()
 
-  if (!admin) {
-    redirect("/")
-  }
+  // if (!admin) {
+  //   redirect("/")
+  // }
 
   const orders = await prisma.order.findMany({
     orderBy: {

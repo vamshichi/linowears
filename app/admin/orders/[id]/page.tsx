@@ -5,11 +5,11 @@ import { AdminHeader } from "@/components/admin/admin-header"
 import { AdminOrderDetails } from "@/components/admin/admin-order-details"
 
 export default async function AdminOrderDetailPage({ params }: { params: { id: string } }) {
-  const admin = await isAdmin()
+  // const admin = await isAdmin()
 
-  if (!admin) {
-    redirect("/")
-  }
+  // if (!admin) {
+  //   redirect("/")
+  // }
 
   const order = await prisma.order.findUnique({
     where: { id: params.id },

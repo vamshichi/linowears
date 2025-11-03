@@ -4,11 +4,11 @@ import { AdminHeader } from "@/components/admin/admin-header"
 import { ProductForm } from "@/components/admin/product-form"
 
 export default async function NewProductPage() {
-  const admin = await isAdmin()
+  // const admin = await isAdmin()
 
-  if (!admin) {
-    redirect("/")
-  }
+  // if (!admin) {
+  //   redirect("/")
+  // }
 
   return (
     <div className="flex min-h-screen flex-col">

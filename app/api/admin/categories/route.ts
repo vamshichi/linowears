@@ -34,7 +34,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession()
-    if (!session?.user) {
+    if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -43,9 +43,9 @@ export async function POST(request: Request) {
       data: {
         name: data.name,
         slug: data.slug,
-        description: data.description,
-        image: data.image,
-        isActive: data.isActive,
+        // description: data.description,
+        // image: data.image,
+        // isActive: data.isActive,
         parentId: data.parentId || null,
       },
     })

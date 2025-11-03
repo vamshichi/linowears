@@ -49,7 +49,7 @@ export async function POST(request: Request) {
         brand,
         tags,
         metaTitle: metaTitle || name,
-        metaDescription: metaDescription || description,
+        // metaDescription: metaDescription || description,
         attributes: attributes || {},
         fabric,
         fabricCare,

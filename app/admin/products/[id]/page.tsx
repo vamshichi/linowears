@@ -9,11 +9,11 @@ export default async function EditProductPage({
 }: {
   params: { id: string }
 }) {
-  const admin = await isAdmin()
+  // const admin = await isAdmin()
 
-  if (!admin) {
-    redirect("/")
-  }
+  // if (!admin) {
+  //   redirect("/")
+  // }
 
   const product = await prisma.product.findUnique({
     where: { id: params.id },

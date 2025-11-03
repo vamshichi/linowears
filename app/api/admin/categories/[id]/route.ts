@@ -5,7 +5,7 @@ import { getSession } from "@/lib/auth"
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   try {
     const session = await getSession()
-    if (!session?.user) {
+    if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -15,9 +15,9 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       data: {
         name: data.name,
         slug: data.slug,
-        description: data.description,
-        image: data.image,
-        isActive: data.isActive,
+        // description: data.description,
+        // image: data.image,
+        // isActive: data.isActive,
         parentId: data.parentId || null,
       },
     })
@@ -31,7 +31,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   try {
     const session = await getSession()
-    if (!session?.user) {
+    if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

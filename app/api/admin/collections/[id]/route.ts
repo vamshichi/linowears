@@ -35,11 +35,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     const collection = await prisma.collection.update({
       where: { id: params.id },
       data: {
-        name,
+        title:name,
         slug,
-        description,
+        // description,
         image,
-        isActive,
+        // isActive,
         products: {
           set: productIds.map((id: string) => ({ id })),
         },

@@ -5,7 +5,7 @@ import { getSession } from "@/lib/auth"
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   try {
     const session = await getSession()
-    if (!session?.user) {
+    if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -15,13 +15,13 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       data: {
         code: data.code,
         discountType: data.discountType,
-        discountValue: data.discountValue,
+        // discountValue: data.discountValue,
         minPurchase: data.minPurchase,
-        maxDiscount: data.maxDiscount,
+        // maxDiscount: data.maxDiscount,
         usageLimit: data.usageLimit,
-        isActive: data.isActive,
+        // isActive: data.isActive,
         validFrom: new Date(data.validFrom),
-        validUntil: data.validUntil ? new Date(data.validUntil) : null,
+        // validUntil: data.validUntil ? new Date(data.validUntil) : null,
       },
     })
 
@@ -34,17 +34,19 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   try {
     const session = await getSession()
-    if (!session?.user) {
+    if (!session || session.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    // Soft delete by marking inactive
     await prisma.coupon.update({
       where: { id: params.id },
-      data: { isDeleted: true },
+      data: { active: false },
     })
 
     return NextResponse.json({ success: true })
   } catch (error) {
+    console.error("Failed to delete coupon:", error)
     return NextResponse.json({ error: "Failed to delete coupon" }, { status: 500 })
   }
 }
