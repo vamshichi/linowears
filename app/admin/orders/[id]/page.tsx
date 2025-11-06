@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation"
 import { isAdmin } from "@/lib/admin"
 import { prisma } from "@/lib/prisma"
-import { AdminHeader } from "@/components/admin/admin-header"
+
 import { AdminOrderDetails } from "@/components/admin/admin-order-details"
+import { AdminSidebar } from "@/components/admin/admin-header"
 
 export default async function AdminOrderDetailPage({ params }: { params: { id: string } }) {
   // const admin = await isAdmin()
@@ -34,9 +35,9 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
 
   return (
     <div className="flex min-h-screen flex-col">
-      <AdminHeader />
+      <AdminSidebar />
 
-      <main className="flex-1 bg-muted/30">
+      <main className="flex-1 bg-muted/30 transition-all duration-300 md:ml-64 ml-20 mx-10">
         <div className="container py-8">
           <AdminOrderDetails order={order} />
         </div>

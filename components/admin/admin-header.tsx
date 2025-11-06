@@ -1,5 +1,7 @@
+"use client"
+
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { useState } from "react"
 import {
   LayoutDashboard,
   Package,
@@ -12,99 +14,83 @@ import {
   Tag,
   Warehouse,
   Mail,
+  Menu,
+  X,
+  Home,
+  Eye,
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export function AdminHeader() {
+export function AdminSidebar() {
+  const [isOpen, setIsOpen] = useState(true)
+
+  const menuItems = [
+    { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
+    { href: "/admin/products", icon: Package, label: "Products" },
+    { href: "/admin/categories", icon: FolderTree, label: "Categories" },
+    { href: "/admin/collections", icon: Grid3x3, label: "Collections" },
+    { href: "/admin/orders", icon: ShoppingCart, label: "Orders" },
+    { href: "/admin/coupons", icon: Tag, label: "Coupons" },
+    { href: "/admin/inventory", icon: Warehouse, label: "Inventory" },
+    { href: "/admin/content", icon: FileText, label: "Content" },
+    { href: "/admin/customers", icon: Users, label: "Customers" },
+    { href: "/admin/newsletter", icon: Mail, label: "Newsletter" },
+  ]
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/admin" className="flex items-center space-x-2">
-          <span className="font-serif text-2xl font-bold tracking-tight">linowares</span>
-          <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">ADMIN</span>
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-6">
-          <Link
-            href="/admin"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <LayoutDashboard className="h-4 w-4" />
-            Dashboard
-          </Link>
-          <Link
-            href="/admin/products"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <Package className="h-4 w-4" />
-            Products
-          </Link>
-          <Link
-            href="/admin/categories"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <FolderTree className="h-4 w-4" />
-            Categories
-          </Link>
-          <Link
-            href="/admin/collections"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <Grid3x3 className="h-4 w-4" />
-            Collections
-          </Link>
-          <Link
-            href="/admin/orders"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <ShoppingCart className="h-4 w-4" />
-            Orders
-          </Link>
-          <Link
-            href="/admin/coupons"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <Tag className="h-4 w-4" />
-            Coupons
-          </Link>
-          <Link
-            href="/admin/inventory"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <Warehouse className="h-4 w-4" />
-            Inventory
-          </Link>
-          <Link
-            href="/admin/content"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <FileText className="h-4 w-4" />
-            Content
-          </Link>
-          <Link
-            href="/admin/customers"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <Users className="h-4 w-4" />
-            Customers
-          </Link>
-          <Link
-            href="/admin/newsletter"
-            className="text-sm font-medium transition-colors hover:text-primary flex items-center gap-2"
-          >
-            <Mail className="h-4 w-4" />
-            Newsletter
-          </Link>
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon">
-            <Settings className="h-5 w-5" />
-          </Button>
-          <Button variant="outline" asChild>
-            <Link href="/">View Store</Link>
-          </Button>
+    <aside
+      className={cn(
+        "fixed left-0 top-0 h-screen border-r border-border bg-background transition-all duration-300 flex flex-col",
+        isOpen ? "w-64" : "w-20"
+      )}
+    >
+      {/* Header / Logo Section */}
+      <div className="flex items-center justify-between px-4 h-16 border-b">
+        <div className="flex items-center space-x-2">
+          <span className="font-serif text-xl font-bold tracking-tight">linowares</span>
+          <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
+            ADMIN
+          </span>
         </div>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden"
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </Button>
       </div>
-    </header>
+
+      {/* Navigation Links */}
+      <nav className="flex-1 overflow-y-auto py-4 space-y-1">
+        {menuItems.map(({ href, icon: Icon, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className="flex items-center px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted rounded-md transition-colors"
+          >
+            <Icon className="h-5 w-5 mr-3" />
+            {isOpen && <span>{label}</span>}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Footer Section */}
+      <div className="border-t p-4 flex flex-col gap-2">
+        <Button variant="ghost" size="sm" className="w-full flex items-center justify-start">
+          <Settings className="h-5 w-5 mr-2" />
+          {isOpen && "Settings"}
+        </Button>
+
+        <Button variant="outline" asChild size="sm" className="w-full flex items-center justify-start">
+          <Link href="/" className="flex items-center">
+            <Eye className="h-5 w-5 mr-2" />
+            {isOpen && "View Store"}
+          </Link>
+        </Button>
+      </div>
+    </aside>
   )
 }

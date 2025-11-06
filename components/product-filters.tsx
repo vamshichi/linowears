@@ -12,40 +12,109 @@ type Category = {
   slug: string
 }
 
-export function ProductFilters() {
+type FilterOptions = {
+  sizes: string[]
+  colors: string[]
+  fabrics: string[]
+}
+
+type ProductFiltersProps = {
+  onFilterChange: (filters: any) => void
+}
+
+export function ProductFilters({ onFilterChange }: ProductFiltersProps) {
   const [priceRange, setPriceRange] = useState([0, 5000])
   const [categories, setCategories] = useState<Category[]>([])
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
+    sizes: [],
+    colors: [],
+    fabrics: [],
+  })
+  const [selectedFilters, setSelectedFilters] = useState({
+    categoryId: "",
+    sizes: [] as string[],
+    colors: [] as string[],
+    fabrics: [] as string[],
+  })
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("/api/admin/categories")
-        const data = await response.json()
-        if (data.success) {
-          setCategories(data.categories)
+        const [categoriesRes, filtersRes] = await Promise.all([
+          fetch("/api/admin/categories"),
+          fetch("/api/products/filters"),
+        ])
+
+        const categoriesData = await categoriesRes.json()
+        const filtersData = await filtersRes.json()
+
+        if (categoriesData.success) {
+          setCategories(categoriesData.categories)
+        }
+
+        if (filtersData.success) {
+          setFilterOptions(filtersData.filters)
         }
       } catch (error) {
-        console.error("[v0] Failed to fetch categories:", error)
+        console.error("[v0] Failed to fetch filter data:", error)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchCategories()
+    fetchData()
   }, [])
+
+  useEffect(() => {
+    onFilterChange({
+      ...selectedFilters,
+      minPrice: priceRange[0],
+      maxPrice: priceRange[1],
+    })
+  }, [selectedFilters, priceRange, onFilterChange])
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      categoryId: prev.categoryId === categoryId ? "" : categoryId,
+    }))
+  }
+
+  const handleArrayFilterChange = (type: "sizes" | "colors" | "fabrics", value: string) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [type]: prev[type].includes(value) ? prev[type].filter((item) => item !== value) : [...prev[type], value],
+    }))
+  }
+
+  const handleReset = () => {
+    setSelectedFilters({
+      categoryId: "",
+      sizes: [],
+      colors: [],
+      fabrics: [],
+    })
+    setPriceRange([0, 5000])
+  }
+
+  if (loading) {
+    return <div className="text-sm text-muted-foreground">Loading filters...</div>
+  }
 
   return (
     <div className="space-y-6">
       <div>
         <h3 className="font-semibold mb-4">Category</h3>
         <div className="space-y-3">
-          {loading ? (
-            <p className="text-sm text-muted-foreground">Loading categories...</p>
-          ) : categories.length > 0 ? (
+          {categories.length > 0 ? (
             categories.map((category) => (
               <div key={category.id} className="flex items-center space-x-2">
-                <Checkbox id={category.id} />
+                <Checkbox
+                  id={category.id}
+                  checked={selectedFilters.categoryId === category.id}
+                  onCheckedChange={() => handleCategoryChange(category.id)}
+                />
                 <Label htmlFor={category.id} className="text-sm font-normal cursor-pointer">
                   {category.name}
                 </Label>
@@ -60,10 +129,14 @@ export function ProductFilters() {
       <div className="pt-6 border-t border-border">
         <h3 className="font-semibold mb-4">Size</h3>
         <div className="space-y-3">
-          {["S", "M", "L", "XL", "XXL"].map((size) => (
+          {filterOptions.sizes.map((size) => (
             <div key={size} className="flex items-center space-x-2">
-              <Checkbox id={size} />
-              <Label htmlFor={size} className="text-sm font-normal cursor-pointer">
+              <Checkbox
+                id={`size-${size}`}
+                checked={selectedFilters.sizes.includes(size)}
+                onCheckedChange={() => handleArrayFilterChange("sizes", size)}
+              />
+              <Label htmlFor={`size-${size}`} className="text-sm font-normal cursor-pointer">
                 {size}
               </Label>
             </div>
@@ -73,20 +146,36 @@ export function ProductFilters() {
 
       <div className="pt-6 border-t border-border">
         <h3 className="font-semibold mb-4">Color</h3>
-        <div className="grid grid-cols-5 gap-2">
-          {[
-            { name: "White", color: "#FFFFFF" },
-            { name: "Beige", color: "#F5F5DC" },
-            { name: "Blue", color: "#4A90E2" },
-            { name: "Green", color: "#7CB342" },
-            { name: "Black", color: "#000000" },
-          ].map((color) => (
-            <button
-              key={color.name}
-              className="w-10 h-10 rounded-full border-2 border-border hover:border-primary transition-colors"
-              style={{ backgroundColor: color.color }}
-              title={color.name}
-            />
+        <div className="space-y-3">
+          {filterOptions.colors.map((color) => (
+            <div key={color} className="flex items-center space-x-2">
+              <Checkbox
+                id={`color-${color}`}
+                checked={selectedFilters.colors.includes(color)}
+                onCheckedChange={() => handleArrayFilterChange("colors", color)}
+              />
+              <Label htmlFor={`color-${color}`} className="text-sm font-normal cursor-pointer">
+                {color}
+              </Label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="pt-6 border-t border-border">
+        <h3 className="font-semibold mb-4">Fabric</h3>
+        <div className="space-y-3">
+          {filterOptions.fabrics.map((fabric) => (
+            <div key={fabric} className="flex items-center space-x-2">
+              <Checkbox
+                id={`fabric-${fabric}`}
+                checked={selectedFilters.fabrics.includes(fabric)}
+                onCheckedChange={() => handleArrayFilterChange("fabrics", fabric)}
+              />
+              <Label htmlFor={`fabric-${fabric}`} className="text-sm font-normal cursor-pointer">
+                {fabric}
+              </Label>
+            </div>
           ))}
         </div>
       </div>
@@ -100,21 +189,7 @@ export function ProductFilters() {
         </div>
       </div>
 
-      <div className="pt-6 border-t border-border">
-        <h3 className="font-semibold mb-4">Fabric</h3>
-        <div className="space-y-3">
-          {["100% Cotton", "Cotton-Linen Blend", "Pure Linen"].map((fabric) => (
-            <div key={fabric} className="flex items-center space-x-2">
-              <Checkbox id={fabric} />
-              <Label htmlFor={fabric} className="text-sm font-normal cursor-pointer">
-                {fabric}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Button variant="outline" className="w-full bg-transparent">
+      <Button variant="outline" className="w-full bg-transparent" onClick={handleReset}>
         Reset Filters
       </Button>
     </div>

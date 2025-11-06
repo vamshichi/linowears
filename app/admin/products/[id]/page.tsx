@@ -1,25 +1,18 @@
 import { redirect } from "next/navigation"
-import { isAdmin } from "@/lib/admin"
 import { prisma } from "@/lib/prisma"
-import { AdminHeader } from "@/components/admin/admin-header"
+import { AdminSidebar } from "@/components/admin/admin-header"
 import { ProductForm } from "@/components/admin/product-form"
 
 export default async function EditProductPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
-  // const admin = await isAdmin()
-
-  // if (!admin) {
-  //   redirect("/")
-  // }
+  const { id } = await params
 
   const product = await prisma.product.findUnique({
-    where: { id: params.id },
-    include: {
-      variants: true,
-    },
+    where: { id },
+    include: { variants: true },
   })
 
   if (!product) {
@@ -28,15 +21,13 @@ export default async function EditProductPage({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <AdminHeader />
-
-      <main className="flex-1 bg-muted/30">
+      <AdminSidebar />
+      <main className="flex-1 bg-muted/30 transition-all duration-300 md:ml-64 ml-20 mx-10">
         <div className="container max-w-4xl py-8">
-          <div className="mb-8">
+          <div className="mb-8 mx-10">
             <h1 className="font-serif text-3xl font-bold mb-2">Edit Product</h1>
             <p className="text-muted-foreground">Update product information</p>
           </div>
-
           <ProductForm product={product} />
         </div>
       </main>

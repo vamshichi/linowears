@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation"
 import { isAdmin } from "@/lib/admin"
 import { prisma } from "@/lib/prisma"
-import { AdminHeader } from "@/components/admin/admin-header"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import Link from "next/link"
 import { AdminProductsList } from "@/components/admin/admin-products-list"
+import { AdminSidebar } from "@/components/admin/admin-header"
 
 export default async function AdminProductsPage() {
   // const admin = await isAdmin()
@@ -25,11 +25,11 @@ export default async function AdminProductsPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <AdminHeader />
+      <AdminSidebar />
 
-      <main className="flex-1 bg-muted/30">
+      <main className="flex-1 bg-muted/30 transition-all duration-300 md:ml-64 ml-20 mx-10">
         <div className="container py-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-8 mx-10">
             <div>
               <h1 className="font-serif text-3xl font-bold mb-2">Products Management</h1>
               <p className="text-muted-foreground">Manage your product catalog</p>
@@ -41,8 +41,9 @@ export default async function AdminProductsPage() {
               </Link>
             </Button>
           </div>
-
+          <div className="mx-10">
           <AdminProductsList products={products} />
+          </div>
         </div>
       </main>
     </div>

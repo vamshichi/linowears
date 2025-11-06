@@ -1,10 +1,13 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center">
         <Image
@@ -137,6 +140,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

@@ -85,87 +85,153 @@ export default async function HomePage() {
           </div>
         </section>
 
+
         {/* Features Section */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {features.map((feature) => {
-                const IconComponent = iconMap[feature.icon] || Leaf
-                return (
-                  <Card key={feature.id} className="border-none shadow-none bg-transparent">
-                    <CardContent className="pt-6 text-center">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                        <IconComponent className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                )
-              })}
+        <section className="py-20 md:py-28 bg-gradient-to-b from-neutral-50 to-white">
+          <div className="mx-auto max-w-7xl container">
+            <div className="text-center mb-14">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900">
+                Why Choose Linowares
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Crafted for comfort, designed for elegance. Experience the finest cotton-linen shirts.
+              </p>
+              <div className="mt-3 h-[2px] w-16 bg-gradient-to-r from-primary/70 to-primary/30 mx-auto rounded-full"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {features.length > 0
+                ? features.map((feature) => {
+                  const IconComponent = iconMap[feature.icon] || Leaf
+                  return (
+                    <Card
+                      key={feature.id}
+                      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <CardContent className="relative z-10 p-8 text-center">
+                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition">
+                          <IconComponent className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-xl mb-3 text-gray-900 group-hover:text-primary transition-colors">
+                          {feature.title}
+                        </h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  )
+                })
+                : // Fallback if no features from DB
+                [1, 2, 3].map((i) => {
+                  const IconComponent = [Leaf, Shirt, Star][i - 1]
+                  return (
+                    <Card
+                      key={i}
+                      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <CardContent className="relative z-10 p-8 text-center">
+                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition">
+                          <IconComponent className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-xl mb-3 text-gray-900 group-hover:text-primary transition-colors">
+                          Premium Quality
+                        </h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">
+                          Sustainable, breathable, and crafted with attention to detail.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
             </div>
           </div>
         </section>
 
+
+
         {/* Featured Products */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Featured Collection</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Explore our handpicked selection of premium cotton-linen shirts
+        <section className="py-20 md:py-28 bg-gradient-to-b from-white to-neutral-50">
+          <div className="mx-auto max-w-7xl container">
+            <div className="text-center mb-16">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900">
+                Featured Collection
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Discover the art of craftsmanship with our handpicked cotton-linen shirts.
               </p>
+              <div className="mt-2 h-[2px] w-16 bg-gradient-to-r from-primary/70 to-primary/30 mx-auto rounded-full"></div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
               {featuredProducts.length > 0
                 ? featuredProducts.map((product) => (
-                    <Link key={product.id} href={`/product/${product.id}`} className="group">
-                      <Card className="overflow-hidden border-border/50 hover:border-primary/50 transition-colors">
-                        <div className="aspect-[3/4] relative overflow-hidden bg-muted">
-                          <Image
-                            src={product.images[0] || "/placeholder.svg?height=600&width=450"}
-                            alt={product.name}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
+                  <Link key={product.id} href={`/product/${product.id}`} className="group">
+                    <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500">
+                      <div className="aspect-[3/4] relative overflow-hidden rounded-t-2xl">
+                        <Image
+                          src={product.images[0] || "/black-formal-cotton-linen-shirt.jpg"}
+                          alt={product.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <Button className="w-full bg-white text-gray-900 hover:bg-gray-100 transition">
+                            View Details
+                          </Button>
                         </div>
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                            {product.name}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-2">{product.fabric}</p>
-                          <p className="font-semibold">₹{product.price.toLocaleString()}</p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))
-                : // Fallback to placeholder products if no featured products
-                  [1, 2, 3, 4].map((i) => (
-                    <Link key={i} href={`/shop`} className="group">
-                      <Card className="overflow-hidden border-border/50 hover:border-primary/50 transition-colors">
-                        <div className="aspect-[3/4] relative overflow-hidden bg-muted">
-                          <Image
-                            src={`/cotton-linen-shirt-style-.jpg?height=600&width=450&query=cotton linen shirt style ${i}`}
-                            alt={`Product ${i}`}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                            Classic Linen Shirt
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-2">Cotton-Linen Blend</p>
-                          <p className="font-semibold">₹2,499</p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
+                      </div>
+
+                      <CardContent className="p-6 text-center">
+                        <h3 className="font-semibold text-lg mb-1 text-gray-900 group-hover:text-primary transition-colors">
+                          {product.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-3 tracking-wide uppercase">
+                          {product.fabric}
+                        </p>
+                        <p className="font-semibold text-xl text-primary">
+                          ₹{product.price.toLocaleString()}
+                        </p>
+                      </CardContent>
+                    </div>
+                  </Link>
+                ))
+                : [1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
+                  >
+                    <div className="aspect-[3/3] relative overflow-hidden rounded-t-2xl">
+                      <Image
+                        src={`black-formal-cotton-linen-shirt.jpg`}
+                        alt={`Product ${i}`}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      />
+                    </div>
+                    <CardContent className="p-6 text-center">
+                      <h3 className="font-semibold text-lg mb-1 text-gray-900 group-hover:text-primary transition-colors">
+                        Classic Linen Shirt
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-3 tracking-wide uppercase">
+                        Cotton-Linen Blend
+                      </p>
+                      <p className="font-semibold text-xl text-primary">₹2,499</p>
+                    </CardContent>
+                  </div>
+                ))}
             </div>
 
-            <div className="text-center mt-12">
-              <Button size="lg" variant="outline" asChild>
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-primary/40 hover:border-primary hover:bg-primary/10 transition"
+              >
                 <Link href="/shop">
                   View All Products <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -174,9 +240,10 @@ export default async function HomePage() {
           </div>
         </section>
 
+
         {/* CTA Section */}
         <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-          <div className="container text-center">
+          <div className="mx-auto max-w-7xl container text-center">
             <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Join Our Community</h2>
             <p className="text-lg mb-8 max-w-2xl mx-auto text-primary-foreground/90">
               Get exclusive access to new collections, styling tips, and special offers

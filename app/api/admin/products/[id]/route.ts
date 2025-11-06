@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { isAdmin } from "@/lib/admin"
 import prisma from "@/lib/prisma"
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     // const admin = await isAdmin()
 
@@ -33,12 +33,12 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 
     // Delete existing variants
     await prisma.productVariant.deleteMany({
-      where: { productId: params.id },
+      where: { productId:(await params) .id },
     })
 
     // Update product with new variants
     const product = await prisma.product.update({
-      where: { id: params.id },
+      where: { id:(await params) .id },
       data: {
         name,
         slug,
@@ -72,16 +72,16 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params:Promise< { id: string }> }) {
   try {
-    const admin = await isAdmin()
+    // const admin = await isAdmin()
 
-    if (!admin) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+    // if (!admin) {
+    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    // }
 
     await prisma.product.delete({
-      where: { id: params.id },
+      where: { id:(await params).id },
     })
 
     return NextResponse.json({ success: true })
