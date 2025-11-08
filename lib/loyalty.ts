@@ -1,65 +1,69 @@
 import prisma from "@/lib/prisma"
 
+// ✅ Get all loyalty point transactions for a user
 export async function getLoyaltyPoints(userId: string) {
-  const transactions = await prisma.loyaltyTransaction.findMany({
+  const transactions = await prisma.loyaltyPoint.findMany({
     where: { userId },
     orderBy: { createdAt: "desc" },
   })
 
-  const totalPoints = transactions.reduce((sum, t) => {
-    return t.type === "earned" ? sum + t.points : sum - t.points
-  }, 0)
+  const totalPoints = transactions.reduce(
+    (sum: number, t) => sum + t.points,
+    0
+  )
 
-  return { points: transactions, totalPoints }
+  return { transactions, totalPoints }
 }
 
-export async function addLoyaltyPoints(userId: string, points: number, description: string, orderId?: string) {
-  const transaction = await prisma.loyaltyTransaction.create({
+// ✅ Add new loyalty points transaction
+export async function addLoyaltyPoints(
+  userId: string,
+  points: number,
+  reason: string,
+  orderId?: string
+) {
+  const transaction = await prisma.loyaltyPoint.create({
     data: {
       userId,
       points,
-      type: "earned",
-      description,
+      reason,
       orderId: orderId || null,
     },
   })
 
-  // Update user's total loyalty points
+  // Optional: compute total points again (if you need to show live totals)
   const { totalPoints } = await getLoyaltyPoints(userId)
-  await prisma.user.update({
-    where: { id: userId },
-    data: { loyaltyPoints: totalPoints },
-  })
 
-  return transaction
+  return { transaction, totalPoints }
 }
 
-export async function createReferral(referrerId: string, referredEmail: string) {
+// ✅ Create a referral entry
+export async function createReferral(referrerId: string, refereeEmail: string) {
   const referral = await prisma.referral.create({
     data: {
       referrerId,
-      referredEmail: referredEmail.toLowerCase(),
+      refereeEmail: refereeEmail.toLowerCase(),
       status: "pending",
-      rewardPoints: 500,
+      reward: 500, // using 'reward' field from your schema
     },
   })
 
   return referral
 }
 
-export async function completeReferral(referralId: string, referredUserId: string) {
+// ✅ Mark referral completed and reward both users
+export async function completeReferral(referralId: string, refereeId: string) {
   const referral = await prisma.referral.update({
     where: { id: referralId },
     data: {
-      referredUserId,
+      refereeId,
       status: "completed",
-      completedAt: new Date(),
     },
   })
 
-  // Add points to both referrer and referred user
-  await addLoyaltyPoints(referral.referrerId, 500, "Referral bonus", undefined)
-  await addLoyaltyPoints(referredUserId, 500, "Sign up bonus from referral", undefined)
+  // Reward both users
+  await addLoyaltyPoints(referral.referrerId, 500, "Referral bonus")
+  await addLoyaltyPoints(refereeId, 500, "Sign-up bonus from referral")
 
   return referral
 }

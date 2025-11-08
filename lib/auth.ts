@@ -7,7 +7,7 @@ export async function generateOTP(): Promise<string> {
 }
 
 export async function sendOTP(email: string, code: string) {
-  console.log(`[v0] Sending OTP ${code} to ${email}`)
+  console.log(` Sending OTP ${code} to ${email}`)
 
   // Send email using Nodemailer
   const result = await sendOTPEmail(email, code)

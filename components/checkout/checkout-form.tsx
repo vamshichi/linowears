@@ -46,7 +46,7 @@ export function CheckoutForm({ user }: { user: User }) {
         alert(data.error || "Failed to create order")
       }
     } catch (error) {
-      console.error("[v0] Checkout error:", error)
+      console.error(" Checkout error:", error)
       alert("Something went wrong. Please try again.")
     } finally {
       setLoading(false)

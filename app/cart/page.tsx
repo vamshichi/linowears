@@ -16,7 +16,7 @@ export default async function CartPage() {
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1 flex items-center justify-center py-12">
-          <div className="text-center space-y-4">
+          <div className="mx-auto max-w-7xl text-center space-y-4">
             <ShoppingBag className="h-16 w-16 mx-auto text-muted-foreground" />
             <h2 className="font-serif text-2xl font-bold">Sign in to view your cart</h2>
             <p className="text-muted-foreground">Please sign in to add items to your cart</p>
@@ -57,7 +57,7 @@ export default async function CartPage() {
       <Header />
 
       <main className="flex-1">
-        <div className="container py-8">
+        <div className="mx-auto max-w-7xl container py-8">
           <h1 className="font-serif text-3xl font-bold mb-8">Shopping Cart</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

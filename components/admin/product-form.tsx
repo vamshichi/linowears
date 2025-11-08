@@ -273,7 +273,7 @@ export function ProductForm({ product }: ProductFormProps) {
                 id="brand"
                 value={formData.brand}
                 onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-                placeholder="e.g., Linowares"
+                placeholder="e.g., linowears"
               />
             </div>
           </div>

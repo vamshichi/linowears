@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const session = await getSession()
 
-    if (!session) {
+    if (!session?.id) {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 })
     }
 
@@ -18,37 +18,35 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 })
     }
 
-    // Check if user has purchased this product
+    // Check if user purchased this product
     const orderItems = await prisma.orderItem.findMany({
       where: { productId },
-      include: {
-        order: true,
-      },
+      include: { order: true },
     })
 
     const hasPurchased = orderItems.some(
-      (item) => item.order.userId === session.userId && item.order.status === "delivered",
+      (item) => item.order.userId === session.id && item.order.status === "DELIVERED"
     )
 
     // Create review
     const review = await prisma.review.create({
       data: {
         productId,
-        userId: session.userId,
+        userId: session.id,
         rating,
         title: title || null,
         comment,
         images: images || [],
-        verifiedPurchase: hasPurchased,
+        verified: hasPurchased,
       },
     })
 
-    // Award loyalty points for review
-    await addLoyaltyPoints(session.userId, 50, "Product review", undefined)
+    // Award loyalty points
+    await addLoyaltyPoints(session.id, 50, "Product review")
 
     return NextResponse.json({ success: true, review })
   } catch (error) {
-    console.error("[v0] Create review error:", error)
+    console.error("Create review error:", error)
     return NextResponse.json({ success: false, error: "Failed to create review" }, { status: 500 })
   }
 }

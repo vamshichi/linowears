@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl container py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="font-serif text-xl font-bold">linowares</h3>
+            <h3 className="font-serif text-xl font-bold">linowears</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Premium cotton-linen shirts crafted for comfort, style, and sustainability.
             </p>
@@ -101,7 +101,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Linowares. All rights reserved.
+            © {new Date().getFullYear()} linowears. All rights reserved.
           </p>
         </div>
       </div>

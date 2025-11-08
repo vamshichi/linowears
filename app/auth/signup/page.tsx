@@ -12,7 +12,7 @@ export default function SignupPage() {
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
             <h1 className="font-serif text-3xl font-bold mb-2">Create Account</h1>
-            <p className="text-muted-foreground">Join Linowares and start shopping</p>
+            <p className="text-muted-foreground">Join linowears and start shopping</p>
           </div>
 
           <SignupForm />

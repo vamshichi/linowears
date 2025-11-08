@@ -51,7 +51,7 @@ export default async function AdminDashboard() {
         <div className="mx-auto max-w-7xl container py-8">
           <div className="mb-8 mx-10">
             <h1 className="font-serif text-3xl font-bold mb-2">Dashboard</h1>
-            <p className="text-muted-foreground">Welcome to Linowares Admin Panel</p>
+            <p className="text-muted-foreground">Welcome to linowears Admin Panel</p>
           </div>
           <div className="mx-10">
             <AdminStats

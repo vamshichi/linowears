@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Update order error:", error)
+    console.error(" Update order error:", error)
     return NextResponse.json({ success: false, error: "Failed to update order" }, { status: 500 })
   }
 }

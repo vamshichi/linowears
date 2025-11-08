@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, measurement })
   } catch (error) {
-    console.error("[v0] Create measurement error:", error)
+    console.error(" Create measurement error:", error)
     return NextResponse.json({ success: false, error: "Failed to create measurement" }, { status: 500 })
   }
 }

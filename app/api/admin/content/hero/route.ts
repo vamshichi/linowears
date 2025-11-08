@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(hero)
   } catch (error) {
-    console.error("[v0] Error updating hero section:", error)
+    console.error(" Error updating hero section:", error)
     return NextResponse.json({ error: "Failed to update hero section" }, { status: 500 })
   }
 }

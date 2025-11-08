@@ -40,7 +40,7 @@ export async function GET() {
       },
     })
   } catch (error) {
-    console.error("[v0] Error fetching filters:", error)
+    console.error(" Error fetching filters:", error)
     return NextResponse.json({ success: false, error: "Failed to fetch filters" }, { status: 500 })
   }
 }

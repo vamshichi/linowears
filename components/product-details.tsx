@@ -51,7 +51,7 @@ export function ProductDetails({ productId }: { productId: string }) {
         if (data.availableSizes.length > 0) setSelectedSize(data.availableSizes[0])
         if (data.availableColors.length > 0) setSelectedColor(data.availableColors[0])
       } catch (error) {
-        console.error("[v0] Error fetching product:", error)
+        console.error(" Error fetching product:", error)
       } finally {
         setLoading(false)
       }
@@ -86,7 +86,7 @@ export function ProductDetails({ productId }: { productId: string }) {
         }
       }
     } catch (error) {
-      console.error("[v0] Add to cart error:", error)
+      console.error(" Add to cart error:", error)
       alert("Something went wrong. Please try again.")
     } finally {
       setAddingToCart(false)

@@ -44,7 +44,7 @@ export function ProductReviews({ productId }: { productId: string }) {
         const reviewData = await response.json()
         setData(reviewData)
       } catch (error) {
-        console.error("[v0] Error fetching reviews:", error)
+        console.error(" Error fetching reviews:", error)
       } finally {
         setLoading(false)
       }

@@ -57,7 +57,7 @@ export function ProductFilters({ onFilterChange }: ProductFiltersProps) {
           setFilterOptions(filtersData.filters)
         }
       } catch (error) {
-        console.error("[v0] Failed to fetch filter data:", error)
+        console.error(" Failed to fetch filter data:", error)
       } finally {
         setLoading(false)
       }

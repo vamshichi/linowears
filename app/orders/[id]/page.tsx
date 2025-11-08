@@ -7,7 +7,7 @@ import { OrderDetails } from "@/components/orders/order-details"
 import { OrderTimeline } from "@/components/orders/order-timeline"
 import { OrderItems } from "@/components/orders/order-items"
 
-export default async function OrderPage({ params }: { params: { id: string } }) {
+export default async function OrderPage({ params }: { params: Promise<{ id: string }> }) {
   const user = await getSession()
 
   if (!user) {
@@ -15,7 +15,7 @@ export default async function OrderPage({ params }: { params: { id: string } }) 
   }
 
   const order = await prisma.order.findUnique({
-    where: { id: params.id },
+    where: { id: (await params).id },
     include: {
       items: {
         include: {
@@ -39,7 +39,7 @@ export default async function OrderPage({ params }: { params: { id: string } }) 
       <Header />
 
       <main className="flex-1">
-        <div className="container py-8">
+        <div className="mx-auto max-w-7xl container py-8">
           <div className="mb-8">
             <h1 className="font-serif text-3xl font-bold mb-2">Order Details</h1>
             <p className="text-muted-foreground">Order #{order.orderNumber}</p>

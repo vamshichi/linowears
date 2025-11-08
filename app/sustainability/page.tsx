@@ -29,7 +29,7 @@ export default function SustainabilityPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-4xl mb-6 text-foreground">Our Commitment</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            At Linowares, sustainability isn't just a buzzword—it's the foundation of everything we do. From the fields
+            At linowears, sustainability isn't just a buzzword—it's the foundation of everything we do. From the fields
             where our cotton and linen are grown to the moment your shirt arrives at your door, we're committed to
             minimizing our environmental impact and maximizing positive change.
           </p>
@@ -46,7 +46,7 @@ export default function SustainabilityPage() {
                 <h3 className="font-serif text-2xl mb-4">Natural & Biodegradable</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Cotton and linen are 100% natural fibers that biodegrade completely, unlike synthetic materials that
-                  can take hundreds of years to break down. When your Linowares shirt eventually reaches the end of its
+                  can take hundreds of years to break down. When your linowears shirt eventually reaches the end of its
                   long life, it will return to the earth naturally.
                 </p>
                 <ul className="space-y-2 text-muted-foreground">
@@ -179,11 +179,11 @@ export default function SustainabilityPage() {
       {/* Care Guide */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-4xl text-center mb-12 text-foreground">Caring for Your Linowares Shirt</h2>
+          <h2 className="font-serif text-4xl text-center mb-12 text-foreground">Caring for Your linowears Shirt</h2>
           <div className="bg-card p-8 rounded-lg border">
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Proper care extends the life of your shirt and reduces environmental impact. Here's how to keep your
-              Linowares shirt looking beautiful for years:
+              linowears shirt looking beautiful for years:
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>

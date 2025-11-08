@@ -16,7 +16,7 @@ export default async function AccountPage() {
       <Header />
 
       <main className="flex-1">
-        <div className="container py-8">
+        <div className="mx-auto max-w-7xl container py-8">
           <AccountDashboard user={user} />
         </div>
       </main>

@@ -34,7 +34,7 @@ async function getHomepageContent() {
 
     return { heroSection, features, featuredProducts }
   } catch (error) {
-    console.error("[v0] Error fetching homepage content:", error)
+    console.error(" Error fetching homepage content:", error)
     return { heroSection: null, features: [], featuredProducts: [] }
   }
 }
@@ -91,7 +91,7 @@ export default async function HomePage() {
           <div className="mx-auto max-w-7xl container">
             <div className="text-center mb-14">
               <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900">
-                Why Choose Linowares
+                Why Choose linowears
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                 Crafted for comfort, designed for elegance. Experience the finest cotton-linen shirts.

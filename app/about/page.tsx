@@ -12,7 +12,7 @@ export default function AboutPage() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <Image
           src="/elegant-cotton-linen-shirt-on-natural-background.jpg"
-          alt="Linowares craftsmanship"
+          alt="linowears craftsmanship"
           fill
           className="object-cover"
           priority
@@ -31,7 +31,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-4xl mb-6 text-foreground">Our Mission</h2>
           <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            At Linowares, we believe that clothing should be more than just fabric—it should be an experience. Our
+            At linowears, we believe that clothing should be more than just fabric—it should be an experience. Our
             mission is to create premium cotton-linen shirts that combine timeless elegance with modern comfort, all
             while respecting our planet and the people who make our products possible.
           </p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
           <div>
             <h2 className="font-serif text-4xl mb-6 text-foreground">The Art of Craftsmanship</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Each Linowares shirt is the result of meticulous attention to detail and decades of textile expertise. Our
+              Each linowears shirt is the result of meticulous attention to detail and decades of textile expertise. Our
               master craftsmen combine traditional techniques with modern innovation to create shirts that are both
               beautiful and durable.
             </p>
@@ -128,7 +128,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-serif text-4xl mb-6">Experience the Difference</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Discover why thousands of customers trust Linowares for their wardrobe essentials
+            Discover why thousands of customers trust linowears for their wardrobe essentials
           </p>
           <div className="flex gap-4 justify-center">
             <Button asChild size="lg" variant="secondary">

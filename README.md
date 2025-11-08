@@ -1,4 +1,4 @@
-# Linowares E-commerce Platform
+# linowears E-commerce Platform
 
 A full-stack e-commerce platform for premium cotton-linen shirts built with Next.js, Prisma, and PostgreSQL.
 
@@ -69,7 +69,7 @@ A full-stack e-commerce platform for premium cotton-linen shirts built with Next
 3. Set up environment variables (copy `.env.example` to `.env.local`):
    \`\`\`env
    # Database
-   DATABASE_URL="postgresql://user:password@localhost:5432/linowares"
+   DATABASE_URL="postgresql://user:password@localhost:5432/linowears"
    
    # NextAuth
    NEXTAUTH_URL="http://localhost:3000"
@@ -84,7 +84,7 @@ A full-stack e-commerce platform for premium cotton-linen shirts built with Next
    SMTP_PORT="587"
    SMTP_USER="your-email@gmail.com"
    SMTP_PASSWORD="your-app-password"
-   SMTP_FROM="Linowares <your-email@gmail.com>"
+   SMTP_FROM="linowears <your-email@gmail.com>"
    \`\`\`
 
 4. Set up Google OAuth:
@@ -184,7 +184,7 @@ A full-stack e-commerce platform for premium cotton-linen shirts built with Next
 
 \`\`\`env
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/linowares"
+DATABASE_URL="postgresql://user:password@localhost:5432/linowears"
 
 # NextAuth (required for Google OAuth)
 NEXTAUTH_URL="http://localhost:3000"
@@ -199,7 +199,7 @@ SMTP_HOST="smtp.gmail.com"
 SMTP_PORT="587"
 SMTP_USER="your-email@gmail.com"
 SMTP_PASSWORD="your-app-password"
-SMTP_FROM="Linowares <your-email@gmail.com>"
+SMTP_FROM="linowears <your-email@gmail.com>"
 
 # Admin Access (optional)
 # Add admin emails to lib/admin.ts

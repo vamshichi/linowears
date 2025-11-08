@@ -48,7 +48,7 @@ export function AdminOrderDetails({ order }: { order: any }) {
         alert("Failed to update order")
       }
     } catch (error) {
-      console.error("[v0] Update order error:", error)
+      console.error(" Update order error:", error)
       alert("Something went wrong")
     } finally {
       setLoading(false)

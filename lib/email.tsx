@@ -14,9 +14,9 @@ const transporter = nodemailer.createTransport({
 export async function sendOTPEmail(email: string, code: string) {
   try {
     const mailOptions = {
-      from: `"Linowares" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      from: `"linowears" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
       to: email,
-      subject: "Your Linowares Login Code",
+      subject: "Your linowears Login Code",
       html: `
         <!DOCTYPE html>
         <html>
@@ -33,7 +33,7 @@ export async function sendOTPEmail(email: string, code: string) {
                     <!-- Header -->
                     <tr>
                       <td style="background: linear-gradient(135deg, #8b7355 0%, #6b5744 100%); padding: 40px 20px; text-align: center;">
-                        <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 600; letter-spacing: 2px;">LINOWARES</h1>
+                        <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 600; letter-spacing: 2px;">linowears</h1>
                         <p style="margin: 10px 0 0; color: #f5f5f0; font-size: 14px; letter-spacing: 1px;">Premium Cotton-Linen Shirts</p>
                       </td>
                     </tr>
@@ -43,7 +43,7 @@ export async function sendOTPEmail(email: string, code: string) {
                       <td style="padding: 40px 30px;">
                         <h2 style="margin: 0 0 20px; color: #2c2c2c; font-size: 24px; font-weight: 600;">Your Login Code</h2>
                         <p style="margin: 0 0 30px; color: #666666; font-size: 16px; line-height: 1.6;">
-                          Use the code below to sign in to your Linowares account. This code will expire in 10 minutes.
+                          Use the code below to sign in to your linowears account. This code will expire in 10 minutes.
                         </p>
                         
                         <!-- OTP Code -->
@@ -67,7 +67,7 @@ export async function sendOTPEmail(email: string, code: string) {
                     <tr>
                       <td style="background-color: #f5f5f0; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
                         <p style="margin: 0 0 10px; color: #999999; font-size: 14px;">
-                          © ${new Date().getFullYear()} Linowares. All rights reserved.
+                          © ${new Date().getFullYear()} linowears. All rights reserved.
                         </p>
                         <p style="margin: 0; color: #999999; font-size: 12px;">
                           Premium cotton-linen shirts crafted with care
@@ -81,14 +81,14 @@ export async function sendOTPEmail(email: string, code: string) {
           </body>
         </html>
       `,
-      text: `Your Linowares login code is: ${code}\n\nThis code will expire in 10 minutes.\n\nIf you didn't request this code, you can safely ignore this email.`,
+      text: `Your linowears login code is: ${code}\n\nThis code will expire in 10 minutes.\n\nIf you didn't request this code, you can safely ignore this email.`,
     }
 
     const info = await transporter.sendMail(mailOptions)
-    console.log("[v0] Email sent successfully:", info.messageId)
+    console.log(" Email sent successfully:", info.messageId)
     return { success: true, messageId: info.messageId }
   } catch (error) {
-    console.error("[v0] Error sending email:", error)
+    console.error(" Error sending email:", error)
     return { success: false, error: "Failed to send email" }
   }
 }
@@ -97,10 +97,10 @@ export async function sendOTPEmail(email: string, code: string) {
 export async function verifyEmailConfig() {
   try {
     await transporter.verify()
-    console.log("[v0] Email server is ready to send messages")
+    console.log(" Email server is ready to send messages")
     return true
   } catch (error) {
-    console.error("[v0] Email server verification failed:", error)
+    console.error(" Email server verification failed:", error)
     return false
   }
 }

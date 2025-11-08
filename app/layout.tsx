@@ -18,7 +18,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Linowares - Premium Cotton-Linen Shirts",
+  title: "linowears - Premium Cotton-Linen Shirts",
   description:
     "Discover timeless elegance with our premium cotton-linen shirt collection. Sustainable, comfortable, and crafted for the modern wardrobe.",
   generator: "v0.app",

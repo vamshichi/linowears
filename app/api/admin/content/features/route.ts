@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(createdFeatures)
   } catch (error) {
-    console.error("[v0] Error updating features:", error)
+    console.error(" Error updating features:", error)
     return NextResponse.json({ error: "Failed to update features" }, { status: 500 })
   }
 }

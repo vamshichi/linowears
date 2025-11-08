@@ -54,7 +54,7 @@ export function ContentManager() {
       if (data.hero) setHero(data.hero)
       if (data.features) setFeatures(data.features)
     } catch (error) {
-      console.error("[v0] Error fetching content:", error)
+      console.error(" Error fetching content:", error)
     }
   }
 

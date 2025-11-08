@@ -53,7 +53,7 @@ export function WriteReviewDialog({ productId, productName }: { productId: strin
         alert(data.error || "Failed to submit review")
       }
     } catch (error) {
-      console.error("[v0] Submit review error:", error)
+      console.error(" Submit review error:", error)
       alert("Something went wrong. Please try again.")
     } finally {
       setLoading(false)

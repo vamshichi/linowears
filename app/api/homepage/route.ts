@@ -37,7 +37,7 @@ export async function GET() {
       settings,
     })
   } catch (error) {
-    console.error("[v0] Error fetching homepage content:", error)
+    console.error(" Error fetching homepage content:", error)
     return NextResponse.json({ error: "Failed to fetch homepage content" }, { status: 500 })
   }
 }

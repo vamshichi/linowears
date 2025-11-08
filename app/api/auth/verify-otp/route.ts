@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, user: result.user })
   } catch (error) {
-    console.error("[v0] Verify OTP error:", error)
+    console.error(" Verify OTP error:", error)
     return NextResponse.json({ success: false, error: "Failed to verify OTP" }, { status: 500 })
   }
 }

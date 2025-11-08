@@ -108,7 +108,7 @@ export async function GET(request: Request) {
       count: productsWithRatings.length,
     })
   } catch (error) {
-    console.error("[v0] Error fetching products:", error)
+    console.error(" Error fetching products:", error)
     return NextResponse.json({ success: false, error: "Failed to fetch products" }, { status: 500 })
   }
 }

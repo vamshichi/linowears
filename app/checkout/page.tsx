@@ -26,7 +26,7 @@ export default async function CheckoutPage() {
       <Header />
 
       <main className="flex-1 bg-muted/30">
-        <div className="container py-8">
+        <div className="mx-auto max-w-7xl container py-8">
           <h1 className="font-serif text-3xl font-bold mb-8">Checkout</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

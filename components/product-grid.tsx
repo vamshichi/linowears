@@ -59,7 +59,7 @@ export function ProductGrid({ filters }: ProductGridProps) {
           setProducts(data.products)
         }
       } catch (error) {
-        console.error("[v0] Failed to fetch products:", error)
+        console.error(" Failed to fetch products:", error)
       } finally {
         setLoading(false)
       }

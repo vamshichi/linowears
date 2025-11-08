@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Remove from cart error:", error)
+    console.error(" Remove from cart error:", error)
     return NextResponse.json({ success: false, error: "Failed to remove from cart" }, { status: 500 })
   }
 }

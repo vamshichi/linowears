@@ -30,7 +30,7 @@ export function RelatedProducts({ productId }: { productId: string }) {
         const data = await response.json()
         setProducts(data)
       } catch (error) {
-        console.error("[v0] Error fetching related products:", error)
+        console.error(" Error fetching related products:", error)
       } finally {
         setLoading(false)
       }

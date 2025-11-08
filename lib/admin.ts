@@ -1,7 +1,7 @@
 import { getSession } from "@/lib/auth"
 
 // In production, store admin emails in environment variables or database
-const ADMIN_EMAILS = ["admin@linowares.com", "owner@linowares.com"]
+const ADMIN_EMAILS = ["admin@linowears.com", "owner@linowears.com"]
 
 export async function isAdmin() {
   const user = await getSession()

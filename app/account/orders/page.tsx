@@ -31,7 +31,7 @@ export default async function OrdersPage() {
       <Header />
 
       <main className="flex-1">
-        <div className="container py-8">
+        <div className="mx-auto max-w-7xl container py-8">
           <h1 className="font-serif text-3xl font-bold mb-8">My Orders</h1>
           <OrdersList orders={orders} />
         </div>

@@ -21,7 +21,7 @@ export function CartItems({ items }: { items: any[] }) {
       })
       router.refresh()
     } catch (error) {
-      console.error("[v0] Failed to update cart:", error)
+      console.error(" Failed to update cart:", error)
     } finally {
       setLoading(null)
     }
@@ -37,7 +37,7 @@ export function CartItems({ items }: { items: any[] }) {
       })
       router.refresh()
     } catch (error) {
-      console.error("[v0] Failed to remove item:", error)
+      console.error(" Failed to remove item:", error)
     } finally {
       setLoading(null)
     }

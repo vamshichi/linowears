@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, referral })
   } catch (error) {
-    console.error("[v0] Create referral error:", error)
+    console.error(" Create referral error:", error)
     return NextResponse.json({ success: false, error: "Failed to create referral" }, { status: 500 })
   }
 }
