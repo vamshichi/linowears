@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { AdminSidebar } from "@/components/admin/admin-header"
 import { CustomerManager } from "@/components/admin/customer-manager"
@@ -5,13 +7,14 @@ import { CustomerManager } from "@/components/admin/customer-manager"
 export default function CustomersPage() {
   return (
     <div className="min-h-screen bg-background">
-     <AdminSidebar />
+      <AdminSidebar />
       <div className="flex-1 bg-muted/30 transition-all duration-300 md:ml-64 ml-20 mx-10 mt-10">
         <div className="flex justify-between items-center mb-8 mx-10">
           <h1 className="font-serif text-3xl">Customer Management</h1>
         </div>
+
         <div className="mx-10">
-        <CustomerManager />
+          <CustomerManager />
         </div>
       </div>
     </div>

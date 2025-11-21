@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { redirect } from "next/navigation"
 import { isAdmin } from "@/lib/admin"
 import { prisma } from "@/lib/prisma"
@@ -41,8 +44,9 @@ export default async function AdminProductsPage() {
               </Link>
             </Button>
           </div>
+
           <div className="mx-10">
-          <AdminProductsList products={products} />
+            <AdminProductsList products={products} />
           </div>
         </div>
       </main>

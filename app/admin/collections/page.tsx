@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { Suspense } from "react"
 import { CollectionManager } from "@/components/admin/collection-manager"
 import { Button } from "@/components/ui/button"
@@ -22,10 +25,11 @@ export default function CollectionsPage() {
             </Button>
           </Link>
         </div>
+
         <div className="mx-10">
-        <Suspense fallback={<div>Loading collections...</div>}>
-          <CollectionManager />
-        </Suspense>
+          <Suspense fallback={<div>Loading collections...</div>}>
+            <CollectionManager />
+          </Suspense>
         </div>
       </main>
     </div>

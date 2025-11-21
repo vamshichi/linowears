@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { redirect } from "next/navigation"
 import { isAdmin } from "@/lib/admin"
 import { prisma } from "@/lib/prisma"
@@ -35,8 +38,8 @@ export default async function AdminOrdersPage() {
             <h1 className="font-serif text-3xl font-bold mb-2">Orders Management</h1>
             <p className="text-muted-foreground">Manage and track all customer orders</p>
           </div>
-         <div className="mx-10">
-          <AdminOrdersList orders={orders} />
+          <div className="mx-10">
+            <AdminOrdersList orders={orders} />
           </div>
         </div>
       </main>

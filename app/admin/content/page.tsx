@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { AdminSidebar } from "@/components/admin/admin-header"
 import { ContentManager } from "@/components/admin/content-manager"
@@ -11,8 +13,9 @@ export default function AdminContentPage() {
           <h1 className="text-3xl font-bold mb-2">Content Management</h1>
           <p className="text-muted-foreground">Manage homepage hero, features, and site settings</p>
         </div>
+
         <div className="mx-10">
-        <ContentManager />
+          <ContentManager />
         </div>
       </div>
     </div>

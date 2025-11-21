@@ -1,4 +1,5 @@
-
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { redirect } from "next/navigation"
 import { isAdmin } from "@/lib/admin"
@@ -10,7 +11,7 @@ import { RecentOrders } from "@/components/admin/recent-orders"
 export default async function AdminDashboard() {
   // default safe values
   let totalOrders = 0
-  let totalRevenue = 0 // number (not object) — normalized below
+  let totalRevenue = 0 // number (not object)
   let totalProducts = 0
   let totalCustomers = 0
   let recentOrders: any[] = []
@@ -25,7 +26,6 @@ export default async function AdminDashboard() {
     ])
 
     totalOrders = orders
-    // revenueAggregate._sum.totalAmount can be number | null — normalize to 0
     totalRevenue = (revenueAggregate._sum.totalAmount ?? 0) as number
     totalProducts = products
     totalCustomers = customers
@@ -39,7 +39,6 @@ export default async function AdminDashboard() {
       },
     })
   } catch (error) {
-    // log the error, but don't crash the page
     console.error("[ADMIN DASHBOARD ERROR]", error)
   }
 
@@ -53,6 +52,7 @@ export default async function AdminDashboard() {
             <h1 className="font-serif text-3xl font-bold mb-2">Dashboard</h1>
             <p className="text-muted-foreground">Welcome to linowears Admin Panel</p>
           </div>
+
           <div className="mx-10">
             <AdminStats
               totalOrders={totalOrders}
@@ -61,6 +61,7 @@ export default async function AdminDashboard() {
               totalCustomers={totalCustomers}
             />
           </div>
+
           <div className="mt-8 mx-10">
             <RecentOrders orders={recentOrders} />
           </div>
@@ -69,5 +70,3 @@ export default async function AdminDashboard() {
     </div>
   )
 }
-
-
