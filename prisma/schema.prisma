@@ -1,3 +1,8 @@
+// RGCAyaCaaAVna7f6
+
+// DATABASE_URL=postgresql://postgres:RGCAyaCaaAVna7f6@db.luiqoyzmrbpwoimbsmfv.supabase.co:5432/postgres
+
+
 generator client {
   provider = "prisma-client-js"
 }
