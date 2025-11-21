@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export function AdminSidebar() {
   const [isOpen, setIsOpen] = useState(true)
@@ -47,11 +48,17 @@ export function AdminSidebar() {
     >
       {/* Header / Logo Section */}
       <div className="flex items-center justify-between px-4 h-16 border-b">
-        <div className="flex items-center space-x-2">
-          <span className="font-serif text-xl font-bold tracking-tight">linowears</span>
-          <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
+        <div className="flex items-center space-x-2 ">
+           <Image
+                  src="/logo/blacklogo.png"  // change to your image path
+                  alt="Linowears"
+                  width={120}
+                  height={50}
+                  className="my-15 py-5"
+                />
+          {/* <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
             ADMIN
-          </span>
+          </span> */}
         </div>
         <Button
           variant="ghost"

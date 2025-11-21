@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ShoppingBag, User, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 export function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -23,10 +24,16 @@ export function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-3">
       <div className="mx-auto max-w-7xl container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="font-serif text-2xl font-bold tracking-tight">linowears</span>
+          <Image
+        src="/logo/blacklogo.png"  // change to your image path
+        alt="Linowears"
+        width={120}
+        height={50}
+        className="my-15"
+      />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">

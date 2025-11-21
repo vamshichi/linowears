@@ -153,7 +153,6 @@ model WishlistItem {
   id         String   @id @default(cuid())
   wishlistId String
   productId  String
-  createdAt  DateTime? @default(now())  // 👈 add this line
   product    Product  @relation(fields: [productId], references: [id])
   wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
 }

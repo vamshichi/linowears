@@ -50,7 +50,7 @@ export default async function HomePage() {
         {/* Hero Section */}
         <section className="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
           <Image
-            src={heroSection?.image || "/elegant-cotton-linen-shirt-on-natural-background.jpg"}
+            src={heroSection?.image || "/herosection/bgimage.jpeg"}
             alt="Premium cotton-linen shirt"
             fill
             className="object-cover"
@@ -84,75 +84,9 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
+        
 
-
-        {/* Features Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-neutral-50 to-white">
-          <div className="mx-auto max-w-7xl container">
-            <div className="text-center mb-14">
-              <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900">
-                Why Choose linowears
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Crafted for comfort, designed for elegance. Experience the finest cotton-linen shirts.
-              </p>
-              <div className="mt-3 h-[2px] w-16 bg-gradient-to-r from-primary/70 to-primary/30 mx-auto rounded-full"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {features.length > 0
-                ? features.map((feature) => {
-                  const IconComponent = iconMap[feature.icon] || Leaf
-                  return (
-                    <Card
-                      key={feature.id}
-                      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <CardContent className="relative z-10 p-8 text-center">
-                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition">
-                          <IconComponent className="h-8 w-8 text-primary" />
-                        </div>
-                        <h3 className="font-semibold text-xl mb-3 text-gray-900 group-hover:text-primary transition-colors">
-                          {feature.title}
-                        </h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  )
-                })
-                : // Fallback if no features from DB
-                [1, 2, 3].map((i) => {
-                  const IconComponent = [Leaf, Shirt, Star][i - 1]
-                  return (
-                    <Card
-                      key={i}
-                      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <CardContent className="relative z-10 p-8 text-center">
-                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition">
-                          <IconComponent className="h-8 w-8 text-primary" />
-                        </div>
-                        <h3 className="font-semibold text-xl mb-3 text-gray-900 group-hover:text-primary transition-colors">
-                          Premium Quality
-                        </h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          Sustainable, breathable, and crafted with attention to detail.
-                        </p>
-                      </CardContent>
-                    </Card>
-                  )
-                })}
-            </div>
-          </div>
-        </section>
-
-
-
-        {/* Featured Products */}
+         {/* Featured Products */}
         <section className="py-20 md:py-28 bg-gradient-to-b from-white to-neutral-50">
           <div className="mx-auto max-w-7xl container">
             <div className="text-center mb-16">
@@ -236,6 +170,70 @@ export default async function HomePage() {
                   View All Products <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-20 md:py-28 bg-gradient-to-b from-neutral-50 to-white">
+          <div className="mx-auto max-w-7xl container">
+            <div className="text-center mb-14">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900">
+                Why Choose linowears
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Crafted for comfort, designed for elegance. Experience the finest cotton-linen shirts.
+              </p>
+              <div className="mt-3 h-[2px] w-16 bg-gradient-to-r from-primary/70 to-primary/30 mx-auto rounded-full"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {features.length > 0
+                ? features.map((feature) => {
+                  const IconComponent = iconMap[feature.icon] || Leaf
+                  return (
+                    <Card
+                      key={feature.id}
+                      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <CardContent className="relative z-10 p-8 text-center">
+                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition">
+                          <IconComponent className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-xl mb-3 text-gray-900 group-hover:text-primary transition-colors">
+                          {feature.title}
+                        </h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  )
+                })
+                : // Fallback if no features from DB
+                [1, 2, 3].map((i) => {
+                  const IconComponent = [Leaf, Shirt, Star][i - 1]
+                  return (
+                    <Card
+                      key={i}
+                      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <CardContent className="relative z-10 p-8 text-center">
+                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition">
+                          <IconComponent className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-xl mb-3 text-gray-900 group-hover:text-primary transition-colors">
+                          Premium Quality
+                        </h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">
+                          Sustainable, breathable, and crafted with attention to detail.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
             </div>
           </div>
         </section>
