@@ -3,14 +3,17 @@
 // DATABASE_URL=postgresql://postgres:RGCAyaCaaAVna7f6@db.luiqoyzmrbpwoimbsmfv.supabase.co:5432/postgres
 
 
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
+
 
 model User {
   id            String         @id @default(cuid())
